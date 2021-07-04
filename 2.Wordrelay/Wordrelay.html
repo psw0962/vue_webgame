@@ -9,22 +9,31 @@
   </head>
   <body>
     <div id="root">
-      <div></div>
-      <form v-on:submit="onSubmitForm">
-        <div>{{word}}</div>
-        <input type="text" v-model="value" ref="answer" />
-        <button type="submit">submit</button>
-      </form>
-      <div>{{result}}</div>
+      <word-relay start-word="apple"></word-relay>
+      <word-relay start-word="orange"></word-relay>
+      <word-relay start-word="strawberry"></word-relay>
+      <word-relay start-word="grape"></word-relay>
     </div>
 
     <script>
-      const app = new Vue({
-        el: "#root",
-        data: {
-          word: "apple",
-          result: "",
-          value: "",
+      Vue.component("word-relay", {
+        template: `
+        <div>
+            <div>{{word}}</div>
+            <form v-on:submit="onSubmitForm">
+                <input type="text" v-model="value" ref="answer" />
+                <button type="submit">submit</button>
+            </form>
+            <div>{{result}}</div>
+        </div>
+        `,
+        props: ["startWord"],
+        data() {
+          return {
+            word: this.startWord,
+            result: "",
+            value: "",
+          };
         },
         methods: {
           onSubmitForm(e) {
@@ -42,6 +51,12 @@
             }
           },
         },
+      });
+    </script>
+
+    <script>
+      const app = new Vue({
+        el: "#root",
       });
     </script>
   </body>
