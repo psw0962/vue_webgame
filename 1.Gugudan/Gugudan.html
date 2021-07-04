@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>gugudan</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+
+  <body>
+    <div id="root">
+      <div>{{first}} x {{second}} = ?</div>
+
+      <form v-on:submit="onsubmitForm">
+        <!--v-model 이 data의 value와 연결시켜줌-->
+        <input type="number" v-model="value" ref="answer" />
+        <button type="submit">submit</button>
+      </form>
+
+      <div id="result">{{result}}</div>
+    </div>
+  </body>
+
+  <script>
+    const app = new Vue({
+      el: "#root",
+      data: {
+        first: Math.ceil(Math.random() * 9),
+        second: Math.ceil(Math.random() * 9),
+        value: "",
+        result: "",
+      },
+      methods: {
+        onsubmitForm(e) {
+          e.preventDefault();
+
+          if (this.first * this.second === parseInt(this.value)) {
+            this.result = "Pass";
+            this.first = Math.ceil(Math.random() * 9);
+            this.second = Math.ceil(Math.random() * 9);
+            this.value = "";
+            this.$refs.answer.focus();
+          } else {
+            this.result = "Wrong";
+            this.value = "";
+            this.$refs.answer.focus();
+          }
+        },
+      },
+    });
+  </script>
+</html>
