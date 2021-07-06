@@ -1,9 +1,14 @@
 const { VueLoaderPlugin } = require("vue-loader");
-const path = require("path"); // 현재경로
+const path = require("path");
 
 module.exports = {
+  mode: "development",
+  devtool: "eval",
+  resolve: {
+    extensions: [".js", ".vue"],
+  },
   entry: {
-    app: path.join(__dirname, "main.js"), // 스크립트들이 하나로 합쳐질 파일 이름
+    app: path.join(__dirname, "main.js"),
   },
   module: {
     rules: [
