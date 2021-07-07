@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "eslint": "^7.30.0"
+  },
+  "devDependencies": {
+    "vue-loader": "^16.3.0"
+  }
+}
