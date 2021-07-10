@@ -13,8 +13,8 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.vue$/, // 확장자가 vue라면
-        use: "vue-loader", // vue-loader가 담당한다.
+        test: /\.vue$/, // 확장자가 vue라면(자바스크립트가 아닌것들을)
+        use: "vue-loader", // vue-loader가 담당하여 읽을 수 있게 해준다.
       },
     ],
   },
