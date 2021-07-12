@@ -10,6 +10,7 @@
 
     <div>{{ result }}</div>
     <div>현재 {{ score }}점</div>
+    <!-- <lifecycle-example v-if="true" /> -->
   </div>
 </template>
 
@@ -20,6 +21,7 @@ const rspCoords = {
   보: "-284px",
 };
 
+let interval = null;
 export default {
   data() {
     return {
@@ -35,6 +37,31 @@ export default {
   },
   methods: {
     onClickButton(choice) {},
+  },
+  created() {
+    console.log("created");
+  },
+  mounted() {
+    console.log("mounted");
+    interval = setInterval(() => {
+      if (this.imgCoord === rspCoords.바위) {
+        this.imgCoord = rspCoords.가위;
+      } else if (this.imgCoord === rspCoords.가위) {
+        this.imgCoord = rspCoords.보;
+      } else if (this.imgCoord === rspCoords.보) {
+        this.imgCoord = rspCoords.바위;
+      }
+    }, 100);
+  },
+  updated() {
+    console.log("updated");
+  },
+  beforeDestroyed() {
+    console.log("beforeDestroyed");
+    clearInterval(interval);
+  },
+  destroyed() {
+    console.log("destroyed");
   },
 };
 </script>
