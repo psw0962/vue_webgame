@@ -1,5 +1,29 @@
-<template></template>
+<template>
+  <div class="ball" v-bind:style="{ background }">{{ number }}</div>
+</template>
 
-<script></script>
+<script>
+export default {
+  name: "LottoBall",
+  data() {
+    let background;
+    return {
+      background,
+    };
+  },
+};
+</script>
 
-<style scoped></style>
+<style scoped>
+.ball {
+  display: inline-block;
+  border: 1px solid black;
+  border-radius: 20px;
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  font-size: 20px;
+  text-align: center;
+  margin-right: 20px;
+}
+</style>
